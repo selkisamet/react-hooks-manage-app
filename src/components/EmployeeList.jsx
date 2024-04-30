@@ -1,4 +1,4 @@
-import React, { Fragment, useContext, useState } from "react";
+import React, { Fragment, useContext, useEffect, useState } from "react";
 import Employee from "./Employee";
 import { Button, Modal } from "react-bootstrap";
 import AddForm from "./AddForm";
@@ -12,7 +12,9 @@ const EmployeeList = () => {
     const handleShow = () => setShow(true);
     const handleClose = () => setShow(false);
 
-
+    useEffect(() => {
+        handleClose();
+    }, [employees])
 
     return (
         <Fragment>
