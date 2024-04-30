@@ -14,7 +14,7 @@ const EmployeeList = () => {
 
     useEffect(() => {
         handleClose();
-    }, [employees])
+    }, [employees]);
 
     return (
         <Fragment>

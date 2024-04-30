@@ -11,9 +11,15 @@ const EmployeeContextProvider = ({ children }) => {
         setEmployees([...employees, { id: uuidv4(), name, email, address, phone }]);
     }
 
+    const deleteEmployee = (id) => {
+
+        setEmployees(employees.filter(employee => employee.id !== id));
+    }
+
     const value = {
         employees,
-        addEmployee
+        addEmployee,
+        deleteEmployee
     }
 
     return (
