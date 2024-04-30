@@ -5,11 +5,14 @@ import AddForm from "./AddForm";
 import { EmployeeContext } from "../context/EmployeeContext";
 
 const EmployeeList = () => {
+    const { employees } = useContext(EmployeeContext);
+
     const [show, setShow] = useState(false);
-    const employeeContext = useContext(EmployeeContext);
 
     const handleShow = () => setShow(true);
     const handleClose = () => setShow(false);
+
+
 
     return (
         <Fragment>
@@ -36,7 +39,7 @@ const EmployeeList = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    <Employee employees={employeeContext} />
+                    <Employee employees={employees} />
                 </tbody>
             </table>
 

@@ -1,14 +1,23 @@
+import { createContext, useState } from "react";
+import { v4 as uuidv4 } from 'uuid';
 import employeeListData from "../data";
-const { createContext, useState } = require("react");
-
 
 export const EmployeeContext = createContext();
 
 const EmployeeContextProvider = ({ children }) => {
     const [employees, setEmployees] = useState(employeeListData);
 
+    const addEmployee = (name, email, address, phone) => {
+        setEmployees([...employees, { id: uuidv4(), name, email, address, phone }]);
+    }
+
+    const value = {
+        employees,
+        addEmployee
+    }
+
     return (
-        <EmployeeContext.Provider value={employees}>
+        <EmployeeContext.Provider value={value}>
             {children}
         </EmployeeContext.Provider>
     )
