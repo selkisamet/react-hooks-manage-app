@@ -34,4 +34,4 @@ const Pagination = ({ pages, setCurrentPage, sortedEmployees, currentEmployees }
     )
 }
 
-export default Pagination
+export default Pagination;
