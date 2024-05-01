@@ -1,6 +1,6 @@
 import React, { Fragment, useContext, useEffect, useState } from "react";
 import { EmployeeContext } from "../context/EmployeeContext";
-import { Button, Modal } from "react-bootstrap";
+import { Button, Modal, OverlayTrigger, Tooltip } from "react-bootstrap";
 import EditForm from "./EditForm";
 
 const Employee = ({ employee }) => {
@@ -22,8 +22,17 @@ const Employee = ({ employee }) => {
             <td>{employee.address}</td>
             <td>{employee.phone}</td>
             <td>
-                <button className="btn text-warning" data-toggle="modal" onClick={handleShow}><i className="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></button>
-                <button className="btn text-danger" data-toggle="modal" onClick={() => deleteEmployee(employee.id)}><i className="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></button>
+                <OverlayTrigger overlay={
+                    <Tooltip>Edit</Tooltip>
+                }>
+                    <button className="btn text-warning" data-toggle="modal" onClick={handleShow}><i className="material-icons">&#xE254;</i></button>
+                </OverlayTrigger>
+
+                <OverlayTrigger overlay={
+                    <Tooltip>Delete</Tooltip>
+                }>
+                    <button className="btn text-danger" data-toggle="modal" onClick={() => deleteEmployee(employee.id)}><i className="material-icons">&#xE872;</i></button>
+                </OverlayTrigger>
             </td>
 
             <Modal show={show} onHide={handleClose}>

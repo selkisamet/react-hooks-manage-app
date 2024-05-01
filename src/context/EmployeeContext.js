@@ -1,11 +1,13 @@
 import { createContext, useState } from "react";
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 import employeeListData from "../data";
 
 export const EmployeeContext = createContext();
 
 const EmployeeContextProvider = ({ children }) => {
     const [employees, setEmployees] = useState(employeeListData);
+
+    const sortedEmployees = employees.sort((a, b) => a.name.localeCompare(b.name));
 
     const addEmployee = (name, email, address, phone) => {
         setEmployees([...employees, { id: uuidv4(), name, email, address, phone }]);
@@ -20,10 +22,10 @@ const EmployeeContextProvider = ({ children }) => {
     }
 
     const value = {
-        employees,
+        sortedEmployees,
         addEmployee,
         deleteEmployee,
-        updateEmployee
+        updateEmployee,
     }
 
     return (
