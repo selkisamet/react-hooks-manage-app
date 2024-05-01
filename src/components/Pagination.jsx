@@ -17,17 +17,17 @@ const Pagination = ({ pages, setCurrentPage, sortedEmployees, currentEmployees }
             <div className="hint-text">Showing <b>{currentEmployees.length}</b> out of <b>{sortedEmployees.length}</b> entries</div>
             <ul className="pagination">
                 <li className={`${currentButton === 1 ? "page-item disabled" : "page-item"}`}>
-                    <a href="#!" className="page-link" onClick={() => setCurrentButton((prev) => prev === 1 ? prev : prev - 1)}>Previous</a>
+                    <button className="page-link" onClick={() => setCurrentButton((prev) => prev === 1 ? prev : prev - 1)}>Previous</button>
                 </li>
                 {
                     numOfPages.map((page, index) => (
                         <li className={`${currentButton === page ? "page-item active" : "page-item"}`} key={index}>
-                            <a href="#!" className="page-link" onClick={() => setCurrentButton(page)}>{page}</a>
+                            <button className="page-link" onClick={() => setCurrentButton(page)}>{page}</button>
                         </li>
                     ))
                 }
                 <li className={`${currentButton === numOfPages.length ? "page-item disabled" : "page-item"}`}>
-                    <a href="#!" className="page-link" onClick={() => setCurrentButton((next) => next === numOfPages.length ? next : next + 1)}>Next</a>
+                    <button className="page-link" onClick={() => setCurrentButton((next) => next === numOfPages.length ? next : next + 1)}>Next</button>
                 </li>
             </ul>
         </div >

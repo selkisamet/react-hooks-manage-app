@@ -4,7 +4,7 @@ import { Button, Modal, OverlayTrigger, Tooltip } from "react-bootstrap";
 import EditForm from "./EditForm";
 
 const Employee = ({ employee }) => {
-    const { deleteEmployee } = useContext(EmployeeContext);
+    const { dispatch } = useContext(EmployeeContext);
 
     const [show, setShow] = useState(false);
 
@@ -31,7 +31,7 @@ const Employee = ({ employee }) => {
                 <OverlayTrigger overlay={
                     <Tooltip>Delete</Tooltip>
                 }>
-                    <button className="btn text-danger" data-toggle="modal" onClick={() => deleteEmployee(employee.id)}><i className="material-icons">&#xE872;</i></button>
+                    <button className="btn text-danger" data-toggle="modal" onClick={() => dispatch({ type: "deleteEmployee", id: employee.id })}><i className="material-icons">&#xE872;</i></button>
                 </OverlayTrigger>
             </td>
 
