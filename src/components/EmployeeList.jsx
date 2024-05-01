@@ -1,6 +1,6 @@
 import React, { Fragment, useContext, useEffect, useState } from "react";
 import Employee from "./Employee";
-import { Button, Modal } from "react-bootstrap";
+import { Alert, Button, Modal } from "react-bootstrap";
 import AddForm from "./AddForm";
 import { EmployeeContext } from "../context/EmployeeContext";
 
@@ -8,13 +8,31 @@ const EmployeeList = () => {
     const { employees } = useContext(EmployeeContext);
 
     const [show, setShow] = useState(false);
+    const [showAlert, setShowAlert] = useState(false);
 
     const handleShow = () => setShow(true);
     const handleClose = () => setShow(false);
 
+    const handleShowAlert = () => {
+        setShowAlert(true);
+
+        setTimeout(() => {
+            setShowAlert(false);
+        }, 3000);
+    }
+
+    useEffect(() => {
+        setShowAlert(false);
+    }, [])
+
     useEffect(() => {
         handleClose();
+
+        return () => {
+            handleShowAlert();
+        };
     }, [employees]);
+
 
     return (
         <Fragment>
@@ -30,6 +48,11 @@ const EmployeeList = () => {
                     </div>
                 </div>
             </div>
+
+            <Alert show={showAlert} variant="success">
+                Employee List successfully update!
+            </Alert>
+
             <table className="table table-striped table-hover">
                 <thead>
                     <tr>
@@ -41,7 +64,13 @@ const EmployeeList = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    <Employee employees={employees} />
+                    {
+                        employees.sort((a, b) => a.name.localeCompare(b.name)).map((employee) => (
+                            <tr key={employee.id}>
+                                <Employee employee={employee} />
+                            </tr >
+                        ))
+                    }
                 </tbody>
             </table>
 
